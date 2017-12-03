@@ -13,12 +13,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { Switch, Route } from 'react-router-dom';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'containers/App';
+import Splash from './containers/Splash';
+import HomePage from 'containers/HomePage/Loadable';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -71,7 +73,10 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <Switch>
+            <Route exact path="/" component={Splash} />
+            <Route path="/main" component={HomePage} />
+          </Switch>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

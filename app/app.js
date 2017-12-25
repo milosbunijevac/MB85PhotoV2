@@ -20,7 +20,7 @@ import 'sanitize.css/sanitize.css';
 
 // Import root app
 import Splash from './containers/Splash';
-import HomePage from 'containers/HomePage/Loadable';
+import App from './containers/App/index';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -53,10 +53,10 @@ import './global-styles';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
+const robotoObserver = new FontFaceObserver('Roboto', {});
 
 // When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
+robotoObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 }, () => {
   document.body.classList.remove('fontLoaded');
@@ -75,7 +75,7 @@ const render = (messages) => {
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/" component={Splash} />
-            <Route path="/main" component={HomePage} />
+            <Route path="/main" component={App} />
           </Switch>
         </ConnectedRouter>
       </LanguageProvider>

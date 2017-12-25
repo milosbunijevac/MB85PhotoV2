@@ -28,15 +28,17 @@ const AppWrapper = styled.div`
 class App extends React.Component {
   render() {
     return (
-      <AppWrapper>
+      <div>
         <Header />
-        <Switch>
-          <Route exact path="/main" component={HomePage} />
-          <Route path="/features" component={FeaturePage} />
-          <Route path="" component={NotFoundPage} />
-        </Switch>
-        <Footer />
-      </AppWrapper>
+        <AppWrapper>
+          <Switch>
+            <Route exact path="/main" component={HomePage} />
+            <Route path="/features" component={FeaturePage} />
+            <Route path="" component={NotFoundPage} />
+          </Switch>
+          <Footer />
+        </AppWrapper>
+      </div>
     );
   }
 }

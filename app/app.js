@@ -21,6 +21,7 @@ import 'sanitize.css/sanitize.css';
 // Import root app
 import Splash from './containers/Splash';
 import App from './containers/App/index';
+import Models from './containers/Models/Loadable';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -75,7 +76,8 @@ const render = (messages) => {
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/" component={Splash} />
-            <Route path="/main" component={App} />
+            <Route exact path="/main" component={App} />
+            <Route path="/main/:navmain" component={App} />
           </Switch>
         </ConnectedRouter>
       </LanguageProvider>

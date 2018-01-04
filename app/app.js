@@ -14,6 +14,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
@@ -69,16 +71,20 @@ const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
+const theme = createMuiTheme();
+
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <Switch>
-            <Route exact path="/" component={Splash} />
-            <Route exact path="/main" component={App} />
-            <Route path="/main/:navmain" component={App} />
-          </Switch>
+          <MuiThemeProvider theme={theme}>
+            <Switch>
+              <Route exact path="/" component={Splash} />
+              <Route exact path="/main" component={App} />
+              <Route path="/main/:navmain" component={App} />
+            </Switch>
+          </MuiThemeProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

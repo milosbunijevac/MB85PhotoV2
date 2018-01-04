@@ -9,6 +9,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { withTheme } from 'material-ui/styles';
 
 import HomePage from 'containers/HomePage/Loadable';
 import Models from 'containers/Models/Loadable';
@@ -29,23 +31,28 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+const theme = createMuiTheme();
 class App extends React.Component {
   render() {
     return (
       <div>
+        {/* <MuiThemeProvider theme={theme}> */}
         <Header />
+        {/* </MuiThemeProvider> */}
         <AppWrapper>
-          Below this are where the new components should render.
-          <Switch>
-            <Route path="/main/aboutme" component={AboutMe} />
-            <Route path="/main/models" component={Models} />
-            <Route path="/main/landscapes" component={Landscapes} />
-          </Switch>
+
+            Below this are where the new components should render.
+            <Switch>
+              <Route path="/main/aboutme" component={AboutMe} />
+              <Route path="/main/models" component={Models} />
+              <Route path="/main/landscapes" component={Landscapes} />
+            </Switch>
           <Footer />
         </AppWrapper>
+
       </div>
     );
   }
 }
 
-export default App;
+export default withTheme()(App);

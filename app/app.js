@@ -16,7 +16,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme, createPalette } from 'material-ui/styles';
 
-import { purple, green, orange } from 'material-ui/colors';
+import { blue, cyan, orange } from 'material-ui/colors';
 
 
 import FontFaceObserver from 'fontfaceobserver';
@@ -75,11 +75,11 @@ const MOUNT_NODE = document.getElementById('app');
 
 const muiTheme = createMuiTheme({
   palette: {
-    primary: purple,
-    secondary: green,
+    primary: blue,
+    secondary: cyan,
   },
   status: {
-    danger: 'orange',
+    danger: orange,
   },
 });
 

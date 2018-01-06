@@ -14,9 +14,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router-dom';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import purple from 'material-ui/colors/purple';
-import green from 'material-ui/colors/green';
+import { MuiThemeProvider, createMuiTheme, createPalette } from 'material-ui/styles';
+
+import { purple, green, orange } from 'material-ui/colors';
+
 
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
@@ -72,7 +73,7 @@ const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
-const theme = createMuiTheme({
+const muiTheme = createMuiTheme({
   palette: {
     primary: purple,
     secondary: green,
@@ -87,7 +88,7 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <MuiThemeProvider theme={theme}>
+          <MuiThemeProvider theme={muiTheme}>
             <Switch>
               <Route exact path="/" component={Splash} />
               <Route exact path="/main" component={App} />

@@ -41,8 +41,8 @@ class App extends React.Component {
               <Route path="/main/models" component={Models} />
               <Route path="/main/landscapes" component={Landscapes} />
             </Switch>
-          <Footer />
         </AppWrapper>
+        <Footer />
       </div>
     );
   }

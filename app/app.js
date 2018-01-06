@@ -23,7 +23,6 @@ import 'sanitize.css/sanitize.css';
 // Import root app
 import Splash from './containers/Splash';
 import App from './containers/App/index';
-import Models from './containers/Models/Loadable';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';

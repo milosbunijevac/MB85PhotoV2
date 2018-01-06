@@ -11,14 +11,24 @@ import Typography from 'material-ui/Typography';
 import JssProvider from 'react-jss/lib/JssProvider';
 import createContext from '../styles/createContext';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
 
 class NavBar extends React.Component {
   state = {
     direction: 'row',
     justify: 'flex-end',
     alignItems: 'flex-start',
+    value: 0,
   };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  handleChangeIndex = (index) => {
+    this.setState({ value: index });
+  };
+
 
   render() {
     const { alignItems, direction, justify } = this.state;
@@ -27,7 +37,11 @@ class NavBar extends React.Component {
         <AppBar >
           <Grid container alignItems={alignItems} direction={direction} justify={justify}>
             <Toolbar>
-              <Tabs centered value={false}>
+              <Tabs
+                value={this.state.value}
+                onChange={this.handleChange}
+                fullWidth
+              >
                 <Tab label="Models" component={Link} to="/main/models" />
                 <Tab label="Adventures" component={Link} to="/main/landscapes" />
                 <Tab label="About Me" component={Link} to="/main/aboutme" />
@@ -40,4 +54,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default withTheme()(NavBar);
+export default NavBar;

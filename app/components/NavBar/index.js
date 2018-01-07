@@ -42,6 +42,7 @@ class NavBar extends React.Component {
                 onChange={this.handleChange}
                 fullWidth
               >
+                <Tab label="Home" component={Link} to="/main" />
                 <Tab label="Models" component={Link} to="/main/models" />
                 <Tab label="Adventures" component={Link} to="/main/landscapes" />
                 <Tab label="About Me" component={Link} to="/main/aboutme" />

@@ -1,7 +1,5 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import { withTheme } from 'material-ui/styles';
-import { MuiThemeProvider } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 
@@ -33,11 +31,11 @@ class Footer extends React.Component {
           <Toolbar>
             <Grid container alignItems={alignItems} direction={direction} justify={justify}>
               <section>
-            © Milos Bunijevac 2018
-          </section>
+                © Milos Bunijevac 2018
+              </section>
               <section>
-            MB85Photography@gmail.com
-          </section>
+                MB85Photography@gmail.com
+              </section>
               <section>
                 <a href="http://www.facebook.com/MB85Photography"><i className="fa fa-facebook-official" ></i></a>
                 <a href="http://www.instagram.com/MB85Photography"><i className="fa fa-instagram" ></i></a>

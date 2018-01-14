@@ -8,7 +8,10 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import actionCreators from './actions';
+import { bindActionCreators } from 'redux';
 
 import HomePage from '../HomePage/Loadable';
 import Models from 'containers/Models/Loadable';
@@ -16,6 +19,16 @@ import Landscapes from 'containers/Landscapes/Loadable';
 import AboutMe from 'containers/AboutMe/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+
+const mapStateToProps = (state, ownProps = {}) => ({
+  myValue: state,
+});
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getNewPayload: actionCreators.customAction,
+  }, dispatch);
+}
 
 
 const AppWrapper = styled.div`
@@ -29,6 +42,11 @@ const AppWrapper = styled.div`
 `;
 
 class App extends React.Component {
+
+  // componentDidMount() {
+  //   this.props.getNewPayload();
+  // }
+
   render() {
     return (
       <div>
@@ -47,4 +65,9 @@ class App extends React.Component {
   }
 }
 
-export default App;
+// const map = Map(obj);
+// map.get('1'); // "one"
+// map.get(1);   // undefined
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

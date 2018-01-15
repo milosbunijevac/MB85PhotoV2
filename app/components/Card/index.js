@@ -11,6 +11,9 @@ const styles = {
   media: {
     height: 200,
   },
+  content: {
+    minHeight: 200,
+  },
 };
 
 function CardModel(props) {
@@ -23,7 +26,7 @@ function CardModel(props) {
           image={props.prevImage}
           title={props.modelName}
         />
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography type="headline" component="h2">
             {props.modelName}
           </Typography>

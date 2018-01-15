@@ -4,9 +4,7 @@ const Wrapper = styled.footer`
   display: flex;
   justify-content: space-between;
   padding: 3em 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  position: absolute;
   width: 100%;
   section {
     a {

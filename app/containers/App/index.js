@@ -36,7 +36,8 @@ const AppWrapper = styled.div`
   margin: 0 auto;
   margin-top: 64px;
   display: flex;
-  min-height: 100%;
+  position: relative;
+  min-height: 75vh;
   padding: 0 16px;
   flex-direction: column;
 `;

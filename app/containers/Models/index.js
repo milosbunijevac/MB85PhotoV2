@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { fetchPosts } from './actions';
 import { bindActionCreators } from 'redux';
+import styled from 'styled-components';
 
 import Card from '../../components/Card';
 
@@ -18,6 +19,13 @@ function mapDispatchToProps(dispatch) {
     getNewPosts: fetchPosts,
   }, dispatch);
 }
+
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-row-gap: 1em;
+`;
 
 class Models extends React.Component {
   constructor(props) {
@@ -33,17 +41,13 @@ class Models extends React.Component {
   render() {
     if (this.props.modelValue.results) {
       return (
-        <div>
-          {/* <img src={this.state.doc[0].data.frontimage.url} alt="Anna Ilina" /> */}
-          This is the new render from prismic.
-          {console.log('This is the modelValue info: ', this.props.modelValue)}
+        <Wrapper>
           {this.props.modelValue.results.map((value, index) => (
             <div key={index}>
               <Card prevImage={value.data.frontimage.url} modelName={value.data.model_name[0].text} modelDetail={value.data.modeldetail[0].text} />
             </div>
             ))}
-
-        </div>
+        </Wrapper>
       );
     }
     return (

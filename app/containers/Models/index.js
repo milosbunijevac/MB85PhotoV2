@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import Card from '../../components/Card';
 
 const mapStateToProps = (state, ownProps = {}) => ({
-  modelValue: state,
+  modelValue: state.get('models'),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -31,12 +31,18 @@ class Models extends React.Component {
 
 
   render() {
-    if (this.props.modelValue) {
+    if (this.props.modelValue.results) {
       return (
         <div>
           {/* <img src={this.state.doc[0].data.frontimage.url} alt="Anna Ilina" /> */}
           This is the new render from prismic.
-          <Card />
+          {console.log('This is the modelValue info: ', this.props.modelValue)}
+          {this.props.modelValue.results.map((value, index) => (
+            <div key={index}>
+              <Card prevImage={value.data.frontimage.url} modelName={value.data.model_name[0].text} modelDetail={value.data.modeldetail[0].text} />
+            </div>
+            ))}
+
         </div>
       );
     }

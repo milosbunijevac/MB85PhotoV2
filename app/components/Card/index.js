@@ -20,26 +20,17 @@ function CardModel(props) {
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image={'http://www.megabored.com/wp-content/uploads/2016/01/bigstock-Bearded-Dragon-388371-840x560.jpg'}
-          title="Contemplative Reptile"
+          image={props.prevImage}
+          title={props.modelName}
         />
         <CardContent>
           <Typography type="headline" component="h2">
-            Lizard
+            {props.modelName}
           </Typography>
           <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            {props.modelDetail}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button dense color="primary">
-            Share
-          </Button>
-          <Button dense color="primary">
-            Learn More
-          </Button>
-        </CardActions>
       </Card>
     </div>
   );

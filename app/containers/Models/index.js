@@ -7,6 +7,8 @@ import { Switch, Route } from 'react-router-dom';
 import { fetchPosts } from './actions';
 import { bindActionCreators } from 'redux';
 
+import Card from '../../components/Card';
+
 const mapStateToProps = (state, ownProps = {}) => ({
   modelValue: state,
 });
@@ -34,7 +36,7 @@ class Models extends React.Component {
         <div>
           {/* <img src={this.state.doc[0].data.frontimage.url} alt="Anna Ilina" /> */}
           This is the new render from prismic.
-
+          <Card />
         </div>
       );
     }

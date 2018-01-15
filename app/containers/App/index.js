@@ -17,7 +17,7 @@ import HomePage from '../HomePage/Loadable';
 import Models from 'containers/Models/Loadable';
 import Landscapes from 'containers/Landscapes/Loadable';
 import AboutMe from 'containers/AboutMe/Loadable';
-import Header from 'components/Header';
+import Header from 'containers/Header';
 import Footer from 'components/Footer';
 
 const mapStateToProps = (state, ownProps = {}) => ({

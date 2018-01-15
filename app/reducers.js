@@ -8,6 +8,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from 'containers/App/reducer';
 import modelsReducer from 'containers/Models/reducer';
+import routesReducer from 'containers/NavBar/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /*
@@ -31,8 +32,8 @@ function routeReducer(state = routeInitialState, action) {
     /* istanbul ignore next */
   case LOCATION_CHANGE:
     return state.merge({
-        location: action.payload,
-      });
+      location: action.payload,
+    });
   default:
     return state;
   }
@@ -43,9 +44,9 @@ function routeReducer(state = routeInitialState, action) {
  */
 export default function createReducer(injectedReducers) {
   return combineReducers({
-    route: routeReducer,
     global: globalReducer,
     models: modelsReducer,
+    routes: routesReducer,
     language: languageProviderReducer,
     ...injectedReducers,
   });

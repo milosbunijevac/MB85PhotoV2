@@ -25,6 +25,8 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-row-gap: 1em;
+  grid-column-gap: 1em;
+  margin: 0 auto;
 `;
 
 class Models extends React.Component {

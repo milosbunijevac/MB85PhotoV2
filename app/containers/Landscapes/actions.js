@@ -12,14 +12,14 @@ const apiEndpoint = 'https://mb85photov2.prismic.io/api/v2';
 // });
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS_LANDSCAPES';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
 
 function requestPosts(api) {
   return {
     type: REQUEST_POSTS,
-    payload: 'Requesting Posts in models',
+    payload: 'Requesting Posts in landscapes',
   };
 }
 
@@ -64,8 +64,7 @@ export function fetchPosts(api, type) {
 
     return Prismic.api(apiEndpoint)
       .then(
-        (api) => api.query(Prismic.Predicates.at('document.type', `${type}`), { pageSize: 30 }),
-
+        (api) => api.query(Prismic.Predicates.at('document.type', `${type}`), { pageSize: 30 })
         // Do not use catch, because that will also catch
         // any errors in the dispatch and resulting render,
         // causing a loop of 'Unexpected batch number' errors.

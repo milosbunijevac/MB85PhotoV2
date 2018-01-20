@@ -36,14 +36,16 @@ class Models extends React.Component {
 
 
   componentDidMount() {
-    this.props.getNewPosts();
+    this.props.getNewPosts(null, 'model');
   }
 
 
   render() {
+    console.log('This is before any render: ', this.props.modelValue);
     if (this.props.modelValue.results) {
       return (
         <Wrapper>
+          {console.log('This is modleValue props: ', this.props.modelValue.results)}
           {this.props.modelValue.results.map((value, index) => (
             <div key={index}>
               <Card prevImage={value.data.frontimage.url} modelName={value.data.model_name[0].text} modelDetail={value.data.modeldetail[0].text} />

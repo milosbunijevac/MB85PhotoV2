@@ -9,6 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import globalReducer from 'containers/App/reducer';
 import modelsReducer from 'containers/Models/reducer';
 import routesReducer from 'containers/NavBar/reducer';
+import landscapesReducer from 'containers/Landscapes/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /*
@@ -47,6 +48,7 @@ export default function createReducer(injectedReducers) {
     global: globalReducer,
     models: modelsReducer,
     routes: routesReducer,
+    landscapes: landscapesReducer,
     language: languageProviderReducer,
     ...injectedReducers,
   });

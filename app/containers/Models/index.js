@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { fetchPosts } from './actions';
 import { bindActionCreators } from 'redux';
+import actionCreators from '../NavBar/actions';
 import styled from 'styled-components';
 
 import Card from '../../components/Card';
@@ -17,6 +18,7 @@ const mapStateToProps = (state, ownProps = {}) => ({
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getNewPosts: fetchPosts,
+    routeValue: (val) => actionCreators.getRoute(val),
   }, dispatch);
 }
 
@@ -37,6 +39,7 @@ class Models extends React.Component {
 
   componentDidMount() {
     this.props.getNewPosts(null, 'model');
+    this.props.routeValue(1);
   }
 
 

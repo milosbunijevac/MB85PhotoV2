@@ -1,6 +1,9 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import actionCreators from '../NavBar/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
 import { withStyles } from 'material-ui/styles';
 
 const styles = (theme) => ({
@@ -11,16 +14,26 @@ const styles = (theme) => ({
   }),
 });
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    routeValue: (val) => actionCreators.getRoute(val),
+  }, dispatch);
+}
+
 class AboutMe extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.routeValue(3);
   }
 
   render() {
     const { classes } = this.props;
     return (
       <Paper className={classes.root} elevation={4}>
-        <Typography type="Display 3" align="center" component="h1">
+        <Typography type="display1" align="center" component="h1">
             Engineer, Photographer, Over-thinker
           </Typography>
         <Typography component="section">
@@ -46,4 +59,7 @@ class AboutMe extends React.Component {
   }
 }
 
-export default withStyles(styles)(AboutMe);
+export default compose(
+  withStyles(styles),
+  connect(null, mapDispatchToProps),
+)(AboutMe);

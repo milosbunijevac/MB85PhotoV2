@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import actionCreators from './actions';
+import actionCreators from '../NavBar/actions';
 import { fetchPosts } from './actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -15,6 +15,7 @@ const mapStateToProps = (state, ownProps = {}) => ({
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getNewPosts: fetchPosts,
+    routeValue: (val) => actionCreators.getRoute(val),
   }, dispatch);
 }
 
@@ -34,6 +35,7 @@ class Landscapes extends React.Component {
 
   componentDidMount() {
     this.props.getNewPosts(null, 'article');
+    this.props.routeValue(2);
   }
 
   render() {

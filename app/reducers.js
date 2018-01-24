@@ -10,6 +10,7 @@ import globalReducer from 'containers/App/reducer';
 import modelsReducer from 'containers/Models/reducer';
 import routesReducer from 'containers/NavBar/reducer';
 import landscapesReducer from 'containers/Landscapes/reducer';
+import modelPageReducer from 'containers/ModelPage/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /*
@@ -31,12 +32,12 @@ const routeInitialState = fromJS({
 function routeReducer(state = routeInitialState, action) {
   switch (action.type) {
     /* istanbul ignore next */
-  case LOCATION_CHANGE:
-    return state.merge({
+    case LOCATION_CHANGE:
+      return state.merge({
       location: action.payload,
     });
-  default:
-    return state;
+    default:
+      return state;
   }
 }
 
@@ -47,6 +48,7 @@ export default function createReducer(injectedReducers) {
   return combineReducers({
     global: globalReducer,
     models: modelsReducer,
+    modelPage: modelPageReducer,
     routes: routesReducer,
     landscapes: landscapesReducer,
     language: languageProviderReducer,

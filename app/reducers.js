@@ -11,6 +11,7 @@ import modelsReducer from 'containers/Models/reducer';
 import routesReducer from 'containers/NavBar/reducer';
 import landscapesReducer from 'containers/Landscapes/reducer';
 import modelPageReducer from 'containers/ModelPage/reducer';
+import landscapePageReducer from 'containers/LandscapePage/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /*
@@ -34,8 +35,8 @@ function routeReducer(state = routeInitialState, action) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
       return state.merge({
-      location: action.payload,
-    });
+        location: action.payload,
+      });
     default:
       return state;
   }
@@ -52,6 +53,7 @@ export default function createReducer(injectedReducers) {
     routes: routesReducer,
     landscapes: landscapesReducer,
     language: languageProviderReducer,
+    landscapePage: landscapePageReducer,
     ...injectedReducers,
   });
 }

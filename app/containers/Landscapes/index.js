@@ -45,7 +45,7 @@ class Landscapes extends React.Component {
           {console.log('this is landscapeProps: ', this.props.landscapeProps)}
           {this.props.landscapeProps.results.map((value, index) => (
             <div key={index}>
-              <Card prevImage={value.data.body[0].value[0].image.url} modelName={value.data.title[0].text} modelDetail={''} />
+              <Card to={`/main/landscapes/${value.uid}`} prevImage={value.data.body[0].value[0].image.url} modelName={value.data.title[0].text} modelDetail={''} />
             </div>
               ))}
               Fully Loaded Landscapes page

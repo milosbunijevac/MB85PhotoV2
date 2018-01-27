@@ -13,7 +13,7 @@ import _ from 'lodash';
 import Card from '../../components/Card';
 
 const mapStateToProps = (state, ownProps = {}) => ({
-  modelValue: state.get('modelPage').get('modelInfo'),
+  landscapeValue: state.get('landscapePage').get('landscapeInfo'),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -36,35 +36,36 @@ const Wrapper = styled.div`
   }
 `;
 
-class ModelPage extends React.Component {
+class LandscapePage extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    this.props.getNewPosts(null, 'model', `${this.props.match.params.model}`);
-    this.props.routeValue(1);
+    this.props.getNewPosts(null, 'article', `${this.props.match.params.landscape}`);
+    this.props.routeValue(2);
   }
 
   render() {
-    if (this.props.modelValue) {
-      const modelList = [];
-      const modelFront = [];
-      _.forEach(this.props.modelValue.data, (value) => {
-        if (value.link_type === 'Web' && value.url) {
-          modelList.push({ src: value.url });
+    if (this.props.landscapeValue) {
+      const landscapeList = [];
+      const landscapeFront = [];
+      console.log('landscapeValue: ', this.props.landscapeValue.data.body['0'].value);
+      _.forEach(this.props.landscapeValue.data.body['0'].value, (value) => {
+        if (value.image.url) {
+          landscapeList.push({ src: value.image.url });
         }
         if (value.copyright === null) {
-          modelFront.push({ fronturl: value.url });
+          landscapeFront.push({ fronturl: value.image.url });
         }
       });
 
       return (
         <Wrapper>
-          {modelList.map((value, index) => (
-            <a href={value.src}><img key={index} src={value.src} /> </a>
+          {landscapeList.map((value, index) => (
+            <a key={index} href={value.src}><img key={index} src={value.src} /> </a>
             ))}
-          {console.log('This is modelList props after loading: ', modelList)}
+          {console.log('This is modelList props after loading: ', landscapeList)}
         </Wrapper>
       );
     }
@@ -77,4 +78,4 @@ class ModelPage extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModelPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LandscapePage);

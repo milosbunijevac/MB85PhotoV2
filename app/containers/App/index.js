@@ -20,6 +20,7 @@ import AboutMe from 'containers/AboutMe/Loadable';
 import Header from 'containers/Header';
 import Footer from 'components/Footer';
 import ModelPage from 'containers/ModelPage';
+import LandscapePage from 'containers/LandscapePage';
 
 const mapStateToProps = (state, ownProps = {}) => ({
   myValue: state,
@@ -59,7 +60,8 @@ class App extends React.Component {
             <Route path="/main/aboutme" component={AboutMe} />
             <Route exact path="/main/models" component={Models} />
             <Route path="/main/models/:model" component={ModelPage} />
-            <Route path="/main/landscapes" component={Landscapes} />
+            <Route exact path="/main/landscapes" component={Landscapes} />
+            <Route path="/main/landscapes/:landscape" component={LandscapePage} />
           </Switch>
         </AppWrapper>
         <Footer />

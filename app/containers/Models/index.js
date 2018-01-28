@@ -51,7 +51,7 @@ class Models extends React.Component {
           {console.log('This is modleValue props: ', this.props.modelValue.results)}
           {this.props.modelValue.results.map((value, index) => (
             <div key={index}>
-              <Card to={`/main/models/${value.uid}`} prevImage={value.data.frontimage.url} modelName={value.data.model_name[0].text} modelDetail={value.data.modeldetail[0].text} />
+              <Card to={`/main/models/${value.uid}`} prevImage={value.data.frontimage.url} modelName={value.data.model_name['0'].text} modelDetail={value.data.modeldetail[0].text} />
             </div>
             ))}
         </Wrapper>

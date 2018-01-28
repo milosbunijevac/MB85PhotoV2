@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import actionCreators from '../NavBar/actions';
 import styled from 'styled-components';
 import _ from 'lodash';
+import ImageGallery from '../../components/ImageGallery';
 
 import Card from '../../components/Card';
 
@@ -42,31 +43,29 @@ class LandscapePage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getNewPosts(null, 'article', `${this.props.match.params.landscape}`);
+    this.props.getNewPosts(null, 'landscape', `${this.props.match.params.landscape}`);
     this.props.routeValue(2);
   }
 
   render() {
     if (this.props.landscapeValue) {
       const landscapeList = [];
-      const landscapeFront = [];
-      console.log('landscapeValue: ', this.props.landscapeValue.data.body['0'].value);
-      _.forEach(this.props.landscapeValue.data.body['0'].value, (value) => {
-        if (value.image.url) {
-          landscapeList.push({ src: value.image.url });
-        }
-        if (value.copyright === null) {
-          landscapeFront.push({ fronturl: value.image.url });
+      console.log('landscapeValue: ', this.props.landscapeValue);
+      _.forEach(this.props.landscapeValue.data, (value) => {
+        if (value.Thumb) {
+          console.log('This is the value of value', value);
+          if (value.dimensions) {
+            landscapeList.push({ thumb: value.Thumb.url, image: value.url, height: value.dimensions.height, width: value.dimensions.width });
+          }
         }
       });
 
       return (
-        <Wrapper>
-          {landscapeList.map((value, index) => (
-            <a key={index} href={value.src}><img key={index} src={value.src} /> </a>
-            ))}
+        <div>
+          <ImageGallery photos={landscapeList} />
+
           {console.log('This is modelList props after loading: ', landscapeList)}
-        </Wrapper>
+        </div>
       );
     }
     return (

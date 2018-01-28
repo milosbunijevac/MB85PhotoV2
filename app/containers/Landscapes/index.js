@@ -34,7 +34,7 @@ class Landscapes extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getNewPosts(null, 'article');
+    this.props.getNewPosts(null, 'landscape');
     this.props.routeValue(2);
   }
 
@@ -45,7 +45,7 @@ class Landscapes extends React.Component {
           {console.log('this is landscapeProps: ', this.props.landscapeProps)}
           {this.props.landscapeProps.results.map((value, index) => (
             <div key={index}>
-              <Card to={`/main/landscapes/${value.uid}`} prevImage={value.data.body[0].value[0].image.url} modelName={value.data.title[0].text} modelDetail={''} />
+              <Card to={`/main/landscapes/${value.uid}`} prevImage={value.data.frontimage.MainThumb.url} modelName={value.data.title['0'].text} modelDetail={''} />
             </div>
               ))}
               Fully Loaded Landscapes page

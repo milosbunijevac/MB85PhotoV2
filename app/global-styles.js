@@ -12,6 +12,10 @@ injectGlobal`
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
+  svg{
+    fill: white!important
+  }
+
   body.fontLoaded {
     font-family: 'Roboto', sans-serif;
   }

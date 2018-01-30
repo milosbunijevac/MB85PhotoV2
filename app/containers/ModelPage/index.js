@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import _ from 'lodash';
 
 import Card from '../../components/Card';
+import Progress from '../../components/DetProgress';
 
 const mapStateToProps = (state, ownProps = {}) => ({
   modelValue: state.get('modelPage').get('modelInfo'),
@@ -70,8 +71,7 @@ class ModelPage extends React.Component {
     }
     return (
       <div>
-        This is the individual model page. {this.props.match.params.model}
-        Old version
+        <Progress />
       </div>
     );
   }

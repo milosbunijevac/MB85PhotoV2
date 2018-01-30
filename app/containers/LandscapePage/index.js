@@ -12,6 +12,7 @@ import _ from 'lodash';
 import ImageGallery from '../../components/ImageGallery';
 
 import Card from '../../components/Card';
+import Progress from '../../components/DetProgress';
 
 const mapStateToProps = (state, ownProps = {}) => ({
   landscapeValue: state.get('landscapePage').get('landscapeInfo'),
@@ -70,8 +71,7 @@ class LandscapePage extends React.Component {
     }
     return (
       <div>
-        This is the individual model page. {this.props.match.params.model}
-        Old version
+        <Progress />
       </div>
     );
   }

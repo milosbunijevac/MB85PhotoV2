@@ -1,19 +1,16 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
 
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-
+import actionCreators from '../NavBar/actions';
+import { fetchPosts } from './actions';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import { bindActionCreators } from 'redux';
 import reducer from './reducer';
 import saga from './saga';
 import styled from 'styled-components';
@@ -26,52 +23,42 @@ const styles = (theme) => ({
   }),
 });
 
+const mapStateToProps = (state, ownProps = {}) => ({
+  stories: state.get('homepageReducer'),
+});
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getNewPosts: fetchPosts,
+    routeValue: (val) => actionCreators.getRoute(val),
+  }, dispatch);
+}
+
+
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
+    this.props.getNewPosts();
+    this.props.routeValue(0);
   }
 
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <Paper className={classes.root} elevation={4}>
-          <Typography type="headline" component="h3">
-            Update: 1/7/2018
-          </Typography>
-          <Typography component="section">
-            <section>
-                This is the first website update for my models webpage. I'm very proud to show my work as well as the work of the lovely models who I've worked with over
-              the past three years. I want everyone to feel free to send me feedback about the website and which models they like the most!
-            </section>
-            <br />
-            <section>
-              Another portion of the site that I am excited about is the landscape section! This section includes the different trips and locations I've lived in the past few years.
-            </section>
-          </Typography>
-        </Paper>
+        This is the front page.
+        {console.log('This is the index: ', this.props.stories)}
       </div>
     );
   }
 }
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
-    },
-  };
-}
 
-
-const withReducer = injectReducer({ key: 'home', reducer });
-const withSaga = injectSaga({ key: 'home', saga });
-
-export default withStyles(styles)(HomePage);
+export default compose(
+  withStyles(styles, {
+    name: 'HomePage',
+  }),
+  connect(mapStateToProps, mapDispatchToProps),
+)(HomePage);

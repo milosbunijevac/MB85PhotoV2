@@ -10,6 +10,7 @@ import actionCreators from '../NavBar/actions';
 import styled from 'styled-components';
 
 import Card from '../../components/Card';
+import Progress from '../../components/DetProgress';
 
 const mapStateToProps = (state, ownProps = {}) => ({
   modelValue: state.get('models'),
@@ -59,7 +60,7 @@ class Models extends React.Component {
     }
     return (
       <div>
-        This is the models page.
+        <Progress />
       </div>
     );
   }

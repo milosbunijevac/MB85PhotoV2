@@ -13,6 +13,7 @@ import landscapesReducer from 'containers/Landscapes/reducer';
 import modelPageReducer from 'containers/ModelPage/reducer';
 import landscapePageReducer from 'containers/LandscapePage/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import homepageReducer from './containers/HomePage/reducer';
 
 /*
  * routeReducer
@@ -33,12 +34,12 @@ const routeInitialState = fromJS({
 function routeReducer(state = routeInitialState, action) {
   switch (action.type) {
     /* istanbul ignore next */
-    case LOCATION_CHANGE:
-      return state.merge({
-        location: action.payload,
-      });
-    default:
-      return state;
+  case LOCATION_CHANGE:
+    return state.merge({
+      location: action.payload,
+    });
+  default:
+    return state;
   }
 }
 
@@ -54,6 +55,7 @@ export default function createReducer(injectedReducers) {
     landscapes: landscapesReducer,
     language: languageProviderReducer,
     landscapePage: landscapePageReducer,
+    homepageReducer,
     ...injectedReducers,
   });
 }

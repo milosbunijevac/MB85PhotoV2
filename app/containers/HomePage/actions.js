@@ -1,34 +1,81 @@
-/*
- * Home Actions
- *
- * Actions change things in your application
- * Since this boilerplate uses a uni-directional data flow, specifically redux,
- * we have these actions which are the only way your application interacts with
- * your application state. This guarantees that your state is up to date and nobody
- * messes it up weirdly somewhere.
- *
- * To add a new Action:
- * 1) Import your constant
- * 2) Add a function like this:
- *    export function yourAction(var) {
- *        return { type: YOUR_ACTION_CONSTANT, var: var }
- *    }
- */
+import Prismic from 'prismic-javascript';
+import fetch from 'cross-fetch';
 
-import {
-  CHANGE_USERNAME,
-} from './constants';
+const apiEndpoint = 'https://mb85photov2.prismic.io/api/v2';
 
-/**
- * Changes the input field of the form
- *
- * @param  {name} name The new text of the input field
- *
- * @return {object}    An action object with a type of CHANGE_USERNAME
- */
-export function changeUsername(name) {
+// Prismic.api(apiEndpoint).then((api) => {
+//   api.query('').then((response) => {
+//     if (response) {
+//       this.setState({ doc: response.results });
+//     }
+//   });
+// });
+
+export const REQUEST_POSTS = 'REQUEST_StoryPagePOSTS';
+export const RECEIVE_POSTS = 'RECEIVE_StoryPagePOSTS';
+export const INVALIDATE_SUBREDDIT = 'INVALIDATE_StoryPageSUBREDDIT';
+
+
+function requestPosts(api) {
   return {
-    type: CHANGE_USERNAME,
-    name,
+    type: REQUEST_POSTS,
+    payload: 'Requesting Posts in storyPage',
+  };
+}
+
+function receivePosts(api) {
+  return {
+    type: RECEIVE_POSTS,
+    payload: api,
+  };
+}
+
+export function invalidateSubreddit(api) {
+  return {
+    type: INVALIDATE_SUBREDDIT,
+    payload: 'Invalidation of posts in storyPage',
+  };
+}
+
+export function fetchPosts(api, type) {
+  // Thunk middleware knows how to handle functions.
+  // It passes the dispatch method as an argument to the function,
+  // thus making it able to dispatch actions itself.
+
+  return function (dispatch) {
+    // First dispatch: the app state is updated to inform
+    // that the API call is starting.
+
+    dispatch(requestPosts(api));
+
+    // The function called by the thunk middleware can return a value,
+    // that is passed on as the return value of the dispatch method.
+
+    // In this case, we return a promise to wait for.
+    // This is not required by thunk middleware, but it is convenient for us.
+
+    // Prismic.api(apiEndpoint).then((api) => {
+//   api.query('').then((response) => {
+//     if (response) {
+//       this.setState({ doc: response.results });
+//     }
+//   });
+// });
+
+    return Prismic.api(apiEndpoint)
+      .then(
+        Prismic.Predicates.at('document.type', 'tories')
+
+        // Do not use catch, because that will also catch
+        // any errors in the dispatch and resulting render,
+        // causing a loop of 'Unexpected batch number' errors.
+        // https://github.com/facebook/react/issues/6895
+      )
+      .then((api) =>
+        // We can dispatch many times!
+        // Here, we update the app state with the results of the API call.
+
+        dispatch(receivePosts(api))
+      );
   };
 }

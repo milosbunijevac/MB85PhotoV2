@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import Card from '../../components/Card';
+import Progress from '../../components/DetProgress';
 
 const mapStateToProps = (state, ownProps = {}) => ({
   landscapeProps: state.get('landscapes'),
@@ -55,7 +56,7 @@ class Landscapes extends React.Component {
 
     return (
       <div>
-        This is the landscapes page.
+        <Progress />
       </div>
     );
   }

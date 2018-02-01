@@ -2,17 +2,16 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Background from './Background';
-import Button from '../../components/Button';
+import vof from '../../images/splash.jpg';
 
-const wid = window.innerWidth;
-const hei = window.innerHeight;
-
-const ButtonStyle = styled.button`
-  position: absolute;
-  top: 5%;
-  left: 10%;
+const Display = styled.div`
+  background-image: url(${vof});
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1024px;
+  margin: 0 auto;
 `;
+
 class Splash extends React.Component {
   constructor(props) {
     super(props);
@@ -20,13 +19,7 @@ class Splash extends React.Component {
   render() {
     return (
       <div>
-        <Background width={`${wid}`} height={`${hei}`}>
-        </Background>
-        <ButtonStyle>
-          <Button href={'/main'}>
-            Enter here
-          </Button>
-        </ButtonStyle>
+        <Display />
       </div>
 
     );

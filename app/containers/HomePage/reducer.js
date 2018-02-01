@@ -11,11 +11,11 @@ export const INVALIDATE_SUBREDDIT = 'INVALIDATE_StoryPageSUBREDDIT';
 
 function HomePageReducer(state = initialState, action) {
   switch (action.type) {
-  case RECEIVE_POSTS:
-    console.log('Hit the homePage name condition');
-    return action.payload;
-  default:
-    return state;
+    case RECEIVE_POSTS:
+      console.log('Hit the homePage name condition: ', action);
+      return action.payload;
+    default:
+      return state;
   }
 }
 

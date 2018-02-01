@@ -63,19 +63,18 @@ export function fetchPosts(api, type) {
 // });
 
     return Prismic.api(apiEndpoint)
-      .then(
-        Prismic.Predicates.at('document.type', 'tories')
+  .then(
+    (api) => api.query(Prismic.Predicates.at('document.type', 'stories'), { pageSize: 30 })
+    // Do not use catch, because that will also catch
+    // any errors in the dispatch and resulting render,
+    // causing a loop of 'Unexpected batch number' errors.
+    // https://github.com/facebook/react/issues/6895
+  )
+    .then((api) =>
+      // We can dispatch many times!
+      // Here, we update the app state with the results of the API call.
 
-        // Do not use catch, because that will also catch
-        // any errors in the dispatch and resulting render,
-        // causing a loop of 'Unexpected batch number' errors.
-        // https://github.com/facebook/react/issues/6895
-      )
-      .then((api) =>
-        // We can dispatch many times!
-        // Here, we update the app state with the results of the API call.
-
-        dispatch(receivePosts(api))
-      );
+      dispatch(receivePosts(api))
+    );
   };
 }

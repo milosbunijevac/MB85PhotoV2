@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
@@ -18,18 +17,17 @@ function PaperSheet(props) {
     <div>
       <Paper className={classes.root} elevation={4}>
         <Typography type="headline" component="h3">
-          {this.props.headline}
+          {props.headline}
+        </Typography>
+        <Typography component="h6">
+          {props.date}
         </Typography>
         <Typography component="p">
-          {this.props.story}
+          {props.story}
         </Typography>
       </Paper>
     </div>
   );
 }
-
-PaperSheet.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(PaperSheet);

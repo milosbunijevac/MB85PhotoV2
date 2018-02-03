@@ -6,6 +6,7 @@ import vof from '../../images/splash1.jpg';
 
 const Display = styled.div`
 
+
   /* Smartphones (landscape) ----------- */
   @media only screen and (min-width : 321px) {
   /* Styles */
@@ -54,6 +55,16 @@ const Display = styled.div`
     background-size: cover;
     height: 500px;
     margin-left: 0;
+}
+
+@media screen and (min-width: 980px)
+{
+/* CSS Document */
+  background-image: url(${vof});
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1024px;
+  margin: 0 auto;
 }
 `;
 

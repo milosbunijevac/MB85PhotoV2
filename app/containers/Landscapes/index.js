@@ -48,7 +48,6 @@ class Landscapes extends React.Component {
               <Card to={`/main/landscapes/${value.uid}`} prevImage={value.data.frontimage.MainThumb.url} modelName={value.data.title['0'].text} modelDetail={''} />
             </div>
               ))}
-              Fully Loaded Landscapes page
         </Wrapper>
       );
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import vof from '../../images/splash.jpg';
+import vof from '../../images/splash1.jpg';
 
 const Display = styled.div`
   background-image: url(${vof});

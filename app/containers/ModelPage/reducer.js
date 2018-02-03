@@ -10,7 +10,6 @@ export const RECEIVE_POSTS = 'RECEIVE_ModelPagePOSTS';
 function modelPageReducer(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_POSTS:
-      console.log('Hit the modelPage name condition');
       return state.set('modelInfo', action.payload);
     default:
       return state;

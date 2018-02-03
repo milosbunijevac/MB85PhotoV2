@@ -41,7 +41,6 @@ class NavBar extends React.Component {
                 <Tab label="Adventures" component={Link} to="/main/landscapes" />
                 <Tab label="About Me" component={Link} to="/main/aboutme" />
               </Tabs>
-              {console.log('This is how to contain the containerRoute: ', this.props.containerRoute)}
             </Toolbar>
           </Grid>
         </AppBar>

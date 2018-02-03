@@ -64,7 +64,6 @@ class ImageGallery extends React.Component {
     return (
       <div>
         <svgWrap>
-          {console.log('This is the photoSet: ', photoSet)}
           <Gallery photos={photoSetAlbumArray} onClick={this.openLightbox} />
           <Lightbox
             images={photoSetArray}

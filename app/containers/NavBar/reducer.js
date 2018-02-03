@@ -9,14 +9,13 @@ const initialState = {
 
 function navBarReducer(state = initialState, action) {
   switch (action.type) {
-  case 'routeValue':
-    console.log('This is inside route reducer, current action: ', action);
-    if (action.payload) {
+    case 'routeValue':
+      if (action.payload) {
       state = action.payload;
     }
-    return state;
-  default:
-    return state;
+      return state;
+    default:
+      return state;
   }
 }
 

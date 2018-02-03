@@ -9,11 +9,10 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS_LANDSCAPES';
 
 function landscapeReducer(state = initialState, action) {
   switch (action.type) {
-  case RECEIVE_POSTS:
-    console.log('Hit the landscape condition');
-    return action.payload;
-  default:
-    return state;
+    case RECEIVE_POSTS:
+      return action.payload;
+    default:
+      return state;
   }
 }
 

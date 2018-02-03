@@ -65,7 +65,6 @@ class ModelPage extends React.Component {
           {modelList.map((value, index) => (
             <a key={index} href={value.src}><img key={index} src={value.src} /> </a>
             ))}
-          {console.log('This is modelList props after loading: ', modelList)}
         </Wrapper>
       );
     }

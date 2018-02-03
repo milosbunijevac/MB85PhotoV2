@@ -51,10 +51,8 @@ class LandscapePage extends React.Component {
   render() {
     if (this.props.landscapeValue) {
       const landscapeList = [];
-      console.log('landscapeValue: ', this.props.landscapeValue);
       _.forEach(this.props.landscapeValue.data, (value) => {
         if (value.Thumb) {
-          console.log('This is the value of value', value);
           if (value.dimensions) {
             landscapeList.push({ thumb: value.Thumb.url, image: value.url, height: value.dimensions.height, width: value.dimensions.width });
           }
@@ -64,8 +62,6 @@ class LandscapePage extends React.Component {
       return (
         <div>
           <ImageGallery photos={landscapeList} />
-
-          {console.log('This is modelList props after loading: ', landscapeList)}
         </div>
       );
     }

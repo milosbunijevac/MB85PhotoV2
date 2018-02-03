@@ -16,7 +16,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme, createPalette } from 'material-ui/styles';
 
-import { blue, cyan, orange, indigo } from 'material-ui/colors';
+import { blue, cyan, orange, indigo, red } from 'material-ui/colors';
 
 
 import FontFaceObserver from 'fontfaceobserver';

@@ -18,13 +18,11 @@ const initialState = fromJS({
 });
 
 function appReducer(state = initialState, action) {
-  console.log(`The reducer is being found and here is the state: ${state}`, ' and the action: ', action);
   switch (action.type) {
-  case 'Name':
-    console.log('Hit the name condition');
-    return action.payload;
-  default:
-    return state;
+    case 'Name':
+      return action.payload;
+    default:
+      return state;
   }
 }
 

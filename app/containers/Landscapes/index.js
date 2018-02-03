@@ -43,7 +43,6 @@ class Landscapes extends React.Component {
     if (this.props.landscapeProps.results) {
       return (
         <Wrapper>
-          {console.log('this is landscapeProps: ', this.props.landscapeProps)}
           {this.props.landscapeProps.results.map((value, index) => (
             <div key={index}>
               <Card to={`/main/landscapes/${value.uid}`} prevImage={value.data.frontimage.MainThumb.url} modelName={value.data.title['0'].text} modelDetail={''} />

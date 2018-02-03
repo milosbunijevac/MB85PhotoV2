@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import actionCreators from './actions';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 
 import HomePage from '../HomePage/Loadable';
 import Models from 'containers/Models/Loadable';
@@ -56,7 +57,7 @@ class App extends React.Component {
         <Header />
         <AppWrapper>
           <Switch>
-            <Route exact path="/main/" component={HomePage} />
+            <Route exact path="/main" component={HomePage} />
             <Route path="/main/aboutme" component={AboutMe} />
             <Route exact path="/main/models" component={Models} />
             <Route path="/main/models/:model" component={ModelPage} />
@@ -75,4 +76,4 @@ class App extends React.Component {
 // map.get(1);   // undefined
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

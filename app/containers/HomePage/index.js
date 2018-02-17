@@ -19,7 +19,7 @@ const styles = (theme) => ({
   }),
 });
 
-const mapStateToProps = (state = {}) => ({
+const mapStateToProps = (state) => ({
   stories: state.get('homepage'),
 });
 

@@ -1,47 +1,39 @@
 import React from 'react';
-
-import Prismic from 'prismic-javascript';
-import { RichText, Date } from 'prismic-reactjs';
-import { connect } from 'react-redux';
-import { Link, Switch, Route } from 'react-router-dom';
-import { fetchPosts } from './actions';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import actionCreators from '../NavBar/actions';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
 import _ from 'lodash';
-import ImageGallery from '../../components/ImageGallery';
+import { fetchPosts } from './actions';
 
-import Card from '../../components/Card';
+
+import actionCreators from '../NavBar/actions';
+
+import ImageGallery from '../../components/ImageGallery';
 import Progress from '../../components/DetProgress';
 
-const mapStateToProps = (state, ownProps = {}) => ({
+const mapStateToProps = (state) => ({
   landscapeValue: state.get('landscapePage').get('landscapeInfo'),
 });
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getNewPosts: fetchPosts,
-    routeValue: (val) => actionCreators.getRoute(val),
-  }, dispatch);
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getNewPosts: fetchPosts,
+  routeValue: (val) => actionCreators.getRoute(val),
+}, dispatch);
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  justify-items: center;
-  align-items: center;
-  img {
-    max-width: 100%;
-    justify-items: center;
-    align-items: center;
-  }
-`;
+// const Wrapper = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   grid-gap: 20px;
+//   justify-items: center;
+//   align-items: center;
+//   img {
+//     max-width: 100%;
+//     justify-items: center;
+//     align-items: center;
+//   }
+// `;
 
 class LandscapePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.getNewPosts(null, 'landscape', `${this.props.match.params.landscape}`);
@@ -72,5 +64,12 @@ class LandscapePage extends React.Component {
     );
   }
 }
+
+LandscapePage.propTypes = {
+  getNewPosts: PropTypes.func,
+  match: PropTypes.object,
+  routeValue: PropTypes.func,
+  landscapeValue: PropTypes.object,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandscapePage);

@@ -1,28 +1,22 @@
-import React from 'react';
-
-import Prismic from 'prismic-javascript';
-import { RichText, Date } from 'prismic-reactjs';
-import { connect } from 'react-redux';
-import { Link, Switch, Route } from 'react-router-dom';
-import { fetchPosts } from './actions';
 import { bindActionCreators } from 'redux';
-import actionCreators from '../NavBar/actions';
 import styled from 'styled-components';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 
-import Card from '../../components/Card';
+import React from 'react';
+import { connect } from 'react-redux';
+import { fetchPosts } from './actions';
+import actionCreators from '../NavBar/actions';
 import Progress from '../../components/DetProgress';
 
-const mapStateToProps = (state, ownProps = {}) => ({
+const mapStateToProps = (state) => ({
   modelValue: state.get('modelPage').get('modelInfo'),
 });
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getNewPosts: fetchPosts,
-    routeValue: (val) => actionCreators.getRoute(val),
-  }, dispatch);
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getNewPosts: fetchPosts,
+  routeValue: (val) => actionCreators.getRoute(val),
+}, dispatch);
 
 const Wrapper = styled.div`
   display: grid;
@@ -38,9 +32,6 @@ const Wrapper = styled.div`
 `;
 
 class ModelPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.getNewPosts(null, 'model', `${this.props.match.params.model}`);
@@ -62,8 +53,8 @@ class ModelPage extends React.Component {
 
       return (
         <Wrapper>
-          {modelList.map((value, index) => (
-            <a key={index} href={value.src}><img key={index} src={value.src} /> </a>
+          {modelList.map((value) => (
+            <a key={value.src} href={value.src}><img alt={`Model ${value.src} shown here`}key={value.src} src={value.src} /> </a>
             ))}
         </Wrapper>
       );
@@ -75,5 +66,12 @@ class ModelPage extends React.Component {
     );
   }
 }
+
+ModelPage.propTypes = {
+  modelValue: PropTypes.object,
+  getNewPosts: PropTypes.func,
+  match: PropTypes.object,
+  routeValue: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModelPage);

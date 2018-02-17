@@ -22,7 +22,7 @@ import actionCreators from './actions';
 import HomePage from '../HomePage/Loadable';
 
 
-const mapStateToProps = (state = {}) => ({
+const mapStateToProps = (state) => ({
   myValue: state,
 });
 

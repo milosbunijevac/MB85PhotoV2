@@ -1,12 +1,10 @@
 import React from 'react';
-import Typography from 'material-ui/Typography';
 import Modal from 'material-ui/Modal';
 import Button from 'material-ui/Button';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-function rand() {
-  return Math.floor(Math.random() * 20) - 10;
-}
+// const rand = () => Math.floor(Math.random() * 20) - 10;
 
 const Wrapper = styled.div`
   position: fixed; 
@@ -26,22 +24,22 @@ const Wrapper = styled.div`
 }
 `;
 
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+// const getModalStyle = () => {
+//   const top = 50 + rand();
+//   const left = 50 + rand();
 
-  return {
-    position: 'absolute',
-    width: 8 * 50,
-    top: 100,
-    left: 100,
-    transform: `translate(-${top}%, -${left}%)`,
-    border: '1px solid #e5e5e5',
-    backgroundColor: '#fff',
-    boxShadow: '0 5px 15px rgba(0, 0, 0, .5)',
-    padding: 8 * 4,
-  };
-}
+//   return {
+//     position: 'absolute',
+//     width: 8 * 50,
+//     top: 100,
+//     left: 100,
+//     transform: `translate(-${top}%, -${left}%)`,
+//     border: '1px solid #e5e5e5',
+//     backgroundColor: '#fff',
+//     boxShadow: '0 5px 15px rgba(0, 0, 0, .5)',
+//     padding: 8 * 4,
+//   };
+// };
 
 class SimpleModal extends React.Component {
   state = {
@@ -59,7 +57,7 @@ class SimpleModal extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleOpen}><img src={this.props.thumb} /></Button>
+        <Button onClick={this.handleOpen}><img alt="Missing an element" src={this.props.thumb} /></Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -67,12 +65,17 @@ class SimpleModal extends React.Component {
           onClose={this.handleClose}
         >
           <Wrapper>
-            <img src={this.props.image} />
+            <img alt="Missing an element" src={this.props.image} />
           </Wrapper>
         </Modal>
       </div>
     );
   }
 }
+
+SimpleModal.propTypes = {
+  thumb: PropTypes.string,
+  image: PropTypes.string,
+};
 
 export default SimpleModal;

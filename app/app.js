@@ -6,7 +6,11 @@
  */
 
 // Needed for redux-saga es6 generator support
+
+// Load the favicon, the manifest.json file and the .htaccess file
+/* eslint-disable import/no-webpack-loader-syntax */
 import 'babel-polyfill';
+// Import Language Provider
 
 // Import all the third party stuff
 import React from 'react';
@@ -14,24 +18,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router-dom';
-import { MuiThemeProvider, createMuiTheme, createPalette } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
-import { blue, cyan, orange, indigo, red } from 'material-ui/colors';
-
-
+import { cyan, orange, indigo } from 'material-ui/colors';
+import LanguageProvider from 'containers/LanguageProvider';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
-import 'sanitize.css/sanitize.css';
 
-// Import root app
-import Splash from './containers/Splash';
-import App from './containers/App/index';
-
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
-
-// Load the favicon, the manifest.json file and the .htaccess file
-/* eslint-disable import/no-webpack-loader-syntax */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import '!file-loader?name=[name].[ext]!./images/icon-72x72.png';
 import '!file-loader?name=[name].[ext]!./images/icon-96x96.png';
@@ -47,14 +40,17 @@ import '!file-loader?name=[name].[ext]!./images/icon-512x512.png';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
+import 'sanitize.css/sanitize.css';
+
+import './global-styles';
+
+import Splash from './containers/Splash';
+import App from './containers/App/index';
 
 import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
-
-// Import CSS reset and Global Styles
-import './global-styles';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)

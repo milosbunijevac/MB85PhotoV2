@@ -1,52 +1,37 @@
 import Prismic from 'prismic-javascript';
-import fetch from 'cross-fetch';
 
 const apiEndpoint = 'https://mb85photov2.prismic.io/api/v2';
-
-// Prismic.api(apiEndpoint).then((api) => {
-//   api.query('').then((response) => {
-//     if (response) {
-//       this.setState({ doc: response.results });
-//     }
-//   });
-// });
 
 export const REQUEST_POSTS = 'REQUEST_LandscapePagePOSTS';
 export const RECEIVE_POSTS = 'RECEIVE_LandscapePagePOSTS';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_LandscapePageSUBREDDIT';
 
 
-function requestPosts(api) {
-  return {
-    type: REQUEST_POSTS,
-    payload: 'Requesting Posts in landscapePage',
-  };
-}
+const requestPosts = () => ({
+  type: REQUEST_POSTS,
+  payload: 'Requesting Posts in landscapePage',
+});
 
-function receivePosts(api) {
-  return {
-    type: RECEIVE_POSTS,
-    payload: api,
-  };
-}
+const receivePosts = (api) => ({
+  type: RECEIVE_POSTS,
+  payload: api,
+});
 
-export function invalidateSubreddit(api) {
-  return {
-    type: INVALIDATE_SUBREDDIT,
-    payload: 'Invalidation of posts in landscapePage',
-  };
-}
+export const invalidateSubreddit = () => ({
+  type: INVALIDATE_SUBREDDIT,
+  payload: 'Invalidation of posts in landscapePage',
+});
 
-export function fetchPosts(api, type, landscapename) {
+export const fetchPosts = (api, type, landscapename) =>
   // Thunk middleware knows how to handle functions.
   // It passes the dispatch method as an argument to the function,
   // thus making it able to dispatch actions itself.
 
-  return function (dispatch) {
+   function (dispatch) {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
 
-    dispatch(requestPosts(api));
+     dispatch(requestPosts(api));
 
     // The function called by the thunk middleware can return a value,
     // that is passed on as the return value of the dispatch method.
@@ -62,20 +47,19 @@ export function fetchPosts(api, type, landscapename) {
 //   });
 // });
 
-    return Prismic.api(apiEndpoint)
+     return Prismic.api(apiEndpoint)
       .then(
-        (api) => api.getByUID(`${type}`, `${landscapename}`)
+        (api1) => api1.getByUID(`${type}`, `${landscapename}`)
 
         // Do not use catch, because that will also catch
         // any errors in the dispatch and resulting render,
         // causing a loop of 'Unexpected batch number' errors.
         // https://github.com/facebook/react/issues/6895
       )
-      .then((api) =>
+      .then((api2) =>
         // We can dispatch many times!
         // Here, we update the app state with the results of the API call.
 
-        dispatch(receivePosts(api))
+        dispatch(receivePosts(api2))
       );
-  };
-}
+   };

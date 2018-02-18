@@ -1,27 +1,21 @@
-import React from 'react';
-
-import Prismic from 'prismic-javascript';
-import { Link, RichText, Date } from 'prismic-reactjs';
-import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
-import { fetchPosts } from './actions';
-import { bindActionCreators } from 'redux';
-import actionCreators from '../NavBar/actions';
 import styled from 'styled-components';
-
+import { bindActionCreators } from 'redux';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { fetchPosts } from './actions';
+import actionCreators from '../NavBar/actions';
 import Card from '../../components/Card';
 import Progress from '../../components/DetProgress';
 
-const mapStateToProps = (state, ownProps = {}) => ({
+const mapStateToProps = (state) => ({
   modelValue: state.get('models'),
 });
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getNewPosts: fetchPosts,
-    routeValue: (val) => actionCreators.getRoute(val),
-  }, dispatch);
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getNewPosts: fetchPosts,
+  routeValue: (val) => actionCreators.getRoute(val),
+}, dispatch);
 
 const Wrapper = styled.div`
   display: grid;
@@ -33,23 +27,17 @@ const Wrapper = styled.div`
 `;
 
 class Models extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   componentDidMount() {
     this.props.getNewPosts(null, 'model');
     this.props.routeValue(1);
   }
 
-
   render() {
     if (this.props.modelValue.results) {
       return (
         <Wrapper>
-          {this.props.modelValue.results.map((value, index) => (
-            <div key={index}>
+          {this.props.modelValue.results.map((value) => (
+            <div key={value.uid}>
               <Card to={`/main/models/${value.uid}`} prevImage={value.data.frontimage.url} modelName={value.data.model_name['0'].text} modelDetail={value.data.modeldetail[0].text} />
             </div>
             ))}
@@ -63,5 +51,11 @@ class Models extends React.Component {
     );
   }
 }
+
+Models.propTypes = {
+  modelValue: PropTypes.object,
+  getNewPosts: PropTypes.func,
+  routeValue: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Models);

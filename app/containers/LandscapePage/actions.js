@@ -27,7 +27,7 @@ export const fetchPosts = (api, type, landscapename) =>
   // It passes the dispatch method as an argument to the function,
   // thus making it able to dispatch actions itself.
 
-   function (dispatch) {
+   function dispatcher(dispatch) {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
 

@@ -1,5 +1,3 @@
-import { fromJS } from 'immutable';
-
 const initialState = {
   direction: 'row',
   justify: 'flex-end',
@@ -7,16 +5,16 @@ const initialState = {
   value: 0,
 };
 
-function navBarReducer(state = initialState, action) {
+const navBarReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'routeValue':
       if (action.payload) {
-      state = action.payload;
-    }
+        return action.payload;
+      }
       return state;
     default:
       return state;
   }
-}
+};
 
 export default navBarReducer;

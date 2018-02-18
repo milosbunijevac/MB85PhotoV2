@@ -1,8 +1,8 @@
 import React from 'react';
-import { render } from 'react-dom';
 import Gallery from 'react-photo-gallery';
 import Lightbox from 'react-images';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const svgWrap = styled.div`
   svg {
@@ -79,5 +79,9 @@ class ImageGallery extends React.Component {
     );
   }
 }
+
+ImageGallery.propTypes = {
+  photos: PropTypes.array,
+};
 
 export default ImageGallery;

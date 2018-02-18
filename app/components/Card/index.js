@@ -1,8 +1,9 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { Link } from 'react-router-dom';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardContent, CardMedia } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
+import PropTypes from 'prop-types';
 
 const styles = {
   card: {
@@ -16,7 +17,7 @@ const styles = {
   },
 };
 
-function CardModel(props) {
+const CardModel = (props) => {
   const { classes } = props;
   return (
     <div>
@@ -39,6 +40,14 @@ function CardModel(props) {
       </Link>
     </div>
   );
-}
+};
+
+CardModel.propTypes = {
+  classes: PropTypes.object,
+  modelName: PropTypes.string,
+  modelDetail: PropTypes.string,
+  to: PropTypes.string,
+  prevImage: PropTypes.string,
+};
 
 export default withStyles(styles)(CardModel);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
+import PropTypes from 'prop-types';
 
 const styles = (theme) => ({
   progress: {
@@ -8,7 +9,7 @@ const styles = (theme) => ({
   },
 });
 
-function LoadingIndicator(props) {
+const LoadingIndicator = (props) => {
   const { classes } = props;
   return (
     <div>
@@ -17,6 +18,10 @@ function LoadingIndicator(props) {
 
     </div>
   );
-}
+};
+
+LoadingIndicator.propTypes = {
+  classes: PropTypes.object,
+};
 
 export default withStyles(styles)(LoadingIndicator);

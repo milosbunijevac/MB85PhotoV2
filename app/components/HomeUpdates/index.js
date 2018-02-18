@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import PropTypes from 'prop-types';
 
 const styles = (theme) => ({
   root: theme.mixins.gutters({
@@ -11,7 +12,7 @@ const styles = (theme) => ({
   }),
 });
 
-function PaperSheet(props) {
+const PaperSheet = (props) => {
   const { classes } = props;
   return (
     <div>
@@ -28,6 +29,13 @@ function PaperSheet(props) {
       </Paper>
     </div>
   );
-}
+};
+
+PaperSheet.propTypes = {
+  classes: PropTypes.object,
+  headline: PropTypes.string,
+  date: PropTypes.string,
+  story: PropTypes.string,
+};
 
 export default withStyles(styles)(PaperSheet);

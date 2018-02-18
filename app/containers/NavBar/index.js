@@ -1,22 +1,21 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppBar, Tabs, Tab } from 'material-ui';
+import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import Toolbar from 'material-ui/Toolbar';
 import actionCreators from './actions';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps = {}) => ({
+const mapStateToProps = (state) => ({
   containerRoute: state.get('routes'),
 });
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    routeValue: (val) => actionCreators.getRoute(val),
-  }, dispatch);
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  routeValue: (val) => actionCreators.getRoute(val),
+}, dispatch);
 
 class NavBar extends React.Component {
 
@@ -48,5 +47,9 @@ class NavBar extends React.Component {
     );
   }
 }
+NavBar.propTypes = {
+  containerRoute: PropTypes.object,
+  routeValue: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

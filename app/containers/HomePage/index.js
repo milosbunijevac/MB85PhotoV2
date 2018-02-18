@@ -1,11 +1,12 @@
-
+import { withStyles } from 'material-ui/styles';
+import { compose, bindActionCreators } from 'redux';
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import PropTypes from 'prop-types';
+
 import actionCreators from '../NavBar/actions';
 import { fetchPosts } from './actions';
-import { withStyles } from 'material-ui/styles';
-import { bindActionCreators } from 'redux';
+
 
 import Loading from '../../components/DetProgress';
 import HomeUpdates from '../../components/HomeUpdates';
@@ -18,25 +19,17 @@ const styles = (theme) => ({
   }),
 });
 
-const mapStateToProps = (state, ownProps = {}) => ({
+const mapStateToProps = (state) => ({
   stories: state.get('homepage'),
 });
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getNewPosts: fetchPosts,
-    routeValue: (val) => actionCreators.getRoute(val),
-  }, dispatch);
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getNewPosts: fetchPosts,
+  routeValue: (val) => actionCreators.getRoute(val),
+}, dispatch);
 
 
 class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.getNewPosts();
     this.props.routeValue(0);
@@ -44,18 +37,16 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
 
   render() {
     if (this.props.stories.results) {
-      const { classes } = this.props;
       return (
         <div>
-          {this.props.stories.results.map((value, index) => (
-            <div key={index}>
+          {this.props.stories.results.map((value) => (
+            <div key={value.data.title['0'].text}>
               <HomeUpdates headline={value.data.title['0'].text} date={value.data.datepicker} story={value.data.story['0'].text} />
             </div>
             ))}
         </div>
       );
     }
-    const { classes } = this.props;
     return (
       <div>
         <Loading />
@@ -63,6 +54,12 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
     );
   }
 }
+
+HomePage.propTypes = {
+  stories: PropTypes.object,
+  getNewPosts: PropTypes.func,
+  routeValue: PropTypes.func,
+};
 
 
 export default compose(

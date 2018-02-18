@@ -1,8 +1,8 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import vof from '../../images/splash1.jpg';
 
@@ -71,9 +71,6 @@ const Display = styled.div`
 `;
 
 class Splash extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     setTimeout(() => this.props.history.push('/main'), 2000);
@@ -87,5 +84,9 @@ class Splash extends React.Component {
     );
   }
 }
+
+Splash.propTypes = {
+  history: PropTypes.string,
+};
 
 export default withRouter(connect(null, null)(Splash));

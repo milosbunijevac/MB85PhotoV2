@@ -86,7 +86,7 @@ class Splash extends React.Component {
 }
 
 Splash.propTypes = {
-  history: PropTypes.string,
+  history: PropTypes.object,
 };
 
 export default withRouter(connect(null, null)(Splash));

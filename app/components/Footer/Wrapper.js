@@ -11,6 +11,9 @@ const Wrapper = styled.footer`
       padding: 10px;
       font-size:24px
     }
+    .fa {
+      color: white;
+    }
    
   }
 `;

@@ -2,7 +2,7 @@
  * Create the store with dynamic reducers
  */
 import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
@@ -11,7 +11,7 @@ import createReducer from './reducers';
 
 
 const sagaMiddleware = createSagaMiddleware();
-const loggerMiddleware = createLogger();
+// const loggerMiddleware = createLogger();
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -21,7 +21,6 @@ export default function configureStore(initialState = {}, history) {
     sagaMiddleware,
     routerMiddleware(history),
     thunkMiddleware,
-    loggerMiddleware,
   ];
 
   const enhancers = [
